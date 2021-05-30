@@ -25,6 +25,19 @@ method ie `const router = new express.Router()` and then all the routers are dec
 and then export the router as ```module.exports = router```
 and now import the router in the app.js
 
+## setting up the static for css and the images
+always remember make your static folder name as public now in the app.js mention ```app.use(express.static(path.join(__dirname,'public')))``` like this and then u can use css in the any template file in the link tag as mentioned
+```<link rel="stylesheet" type="text/css" href="/css/style.css">```
+
+# EDITING THE LOGIN PAGE
+so now we are gonna edit this login page so for that we will be using the login layout as the default layout was set to be main.hbs hence now we have to change that so go to the `router/index.js` and there when you are rendering the login template you have t specify the layout as the argument `router.get('/',(req,res)=>{
+	res.render('login',{
+		layout: 'login'
+	});
+})` 
+`
+
+
 
 
 
