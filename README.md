@@ -1,8 +1,8 @@
 # blogingApp
 node js express mongodb based bloging app 
 
-# Setup the config file
-a config file is the file where all the secret info is stored in the .env format the file here is named as config.env and using dotenv module we will be cofiguring those variables and info in to our code so for loading the config file write ```dotenv.config({ path: './config/config.env' })```  now once the config file is loaded we can access any var defined there using `process.env.(name of the variable)` the NODE_ENV is defined by the cross-env and write the scripts for both dev mode and the production mode like`"start": "cross-env NODE_ENV=production node app"` 
+# Setup the config file and connecting DB
+a config file is the file where all the secret info is stored in the .env format the file here is named as config.env and using dotenv module we will be cofiguring those variables and info in to our code so for loading the config file write ```dotenv.config({ path: './config/config.env' })```  now once the config file is loaded we can access any var defined there using `process.env.(name of the variable)` the NODE_ENV is defined by the cross-env and write the scripts for both dev mode and the production mode like`"start": "cross-env NODE_ENV=production node app"`  here we are using the mongodb atlas create the cluster on there site registe a user and take a key from there and paste in the config file as a variable and now in the cofig folder you have to make the db.js which will have the same code which we did with the help of mongoose but this time we will use the key stored in the config as the variable in the .env file again export the function and require in app.js
 
 # setting up morgan for the logging middlewares 
 no need to mess yourself with what is morgan just remember that it helps in the hnadling logging files these middlewares are added and then the show info on console abbout all the logging request to the site server for this add 
@@ -23,6 +23,9 @@ method ie `const router = new express.Router()` and then all the routers are dec
 	res.render('login');
 })``` 
 and then export the router as ```module.exports = router```
+and now import the router in the app.js
+
+
 
 
 
