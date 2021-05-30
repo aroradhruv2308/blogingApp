@@ -43,6 +43,7 @@ here we have to get the api key and the a api secret so to do that we have to go
 and after doing all that shit yu will be getting the api key and api secret which you will be adding in the config file 
 
 ## NEXT STEP is passport.js
+key point ------>  A session is a place to store data that you want access to across requests. Each user that visits your website has a unique session. You can use sessions to store and access user data as they browse your application. Sessions are integral to web application development because they allow the application to store state.
 
 passport.js provide many methods for the authentication here we will use google o-Auth these are the following steps used
 step1: build the passport.js in the config file
@@ -66,7 +67,36 @@ app.use(session({
 }))
 ```
 
+### filling up the config file
+first we have to create google strategy which we will be doing creating the function in exporting the module and that function will will recieve the passport module as we send it in configuring the passport.js in the app.js file
+```
+module.exports = function(passport) {
 
+	passport.use(new GoogleStrategy({
 
+		clientID: process.env.GOOGLE_CLIENT_ID,
+		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		callbackURL: '/auth/google/callback'
 
+	}, 
+
+	async(accessToken, refreshToken,profile,done)=>{
+	    //like in get or post request we did same this through the res and req
+	    // but here instead of that accesstoken... and rest are used
+	    console.log(profile)
+     }))
+     
+     //put the serielized user and deserialized user
+	passport.serializeUser(function(user, done) {
+		done(null, user.id);
+	});
+
+	passport.deserializeUser(function(id, done) {
+		User.findById(id, function(err, user) {
+			done(err, user);
+		});
+	})
+}
+
+```
 
