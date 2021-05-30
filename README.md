@@ -42,6 +42,29 @@ so now we are gonna edit this login page so for that we will be using the login 
 here we have to get the api key and the a api secret so to do that we have to go to google cloud console and in that we have to follow the steps to like to select api services and setting up credentials (if you are a new user )
 and after doing all that shit yu will be getting the api key and api secret which you will be adding in the config file 
 
+## NEXT STEP is passport.js
+
+passport.js provide many methods for the authentication here we will use google o-Auth these are the following steps used
+step1: build the passport.js in the config file
+step2: now come to the app.js here you have to declare passport session and other middlewares first require the passport.js as u required other files in config you can also send the passport module as ```require('./config/passport')(passport)``` 
+step3: declare the middlewares 
+
+//passport middleware
+```
+app.use(passport.initialize())
+app.use(passport.session())
+
+```
+//express-session middleware
+```
+app.use(session({
+   
+   secret: 'keyboard cat',
+   resave: false,
+   saveUninitialized: false,
+
+}))
+```
 
 
 
