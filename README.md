@@ -30,12 +30,17 @@ always remember make your static folder name as public now in the app.js mention
 ```<link rel="stylesheet" type="text/css" href="/css/style.css">```
 
 # EDITING THE LOGIN PAGE
-so now we are gonna edit this login page so for that we will be using the login layout as the default layout was set to be main.hbs hence now we have to change that so go to the `router/index.js` and there when you are rendering the login template you have t specify the layout as the argument `router.get('/',(req,res)=>{
+so now we are gonna edit this login page so for that we will be using the login layout as the default layout was set to be main.hbs hence now we have to change that so go to the `router/index.js` and there when you are rendering the login template you have t specify the layout as the argument 
+`router.get('/',(req,res)=>{
 	res.render('login',{
 		layout: 'login'
 	});
-})` 
-`
+})` for all the front end designing we are using the font awesome and from there only all the google buttos and the icons are used
+
+# GOOGLE AUTHENTICATION
+
+here we have to get the api key and the a api secret so to do that we have to go to google cloud console and in that we have to follow the steps to like to select api services and setting up credentials (if you are a new user )
+and after doing all that shit yu will be getting the api key and api secret which you will be adding in the config file 
 
 
 
