@@ -17,5 +17,12 @@ so for this first we have to add the handle bars middle wares to tell that what 
 app.set('view engine','.hbs');` add this to the app.js and now you have to make directories make the exactly same directory so that no error occur
 in the root directory make the views inside declare the layouts which will contain two files ie main.hbs and login.hbs and now inside the views you will add your html files but in .hbs extension the layout defines the basic structure and all other hbs runs through rout on the layout and you can see that in the above mentioned that the default layout is main so it will run the main.hbs first and then all the files as the route commands
 
+## setting up routes 
+now this routes will handle all the http request get ,post patch delete or any other so now we will make the router folder in the route directory  inside which index.js is made now here you have to make the all the routes and export the router the router is made by the express 
+method ie `const router = new express.Router()` and then all the routers are declared like ```router.get('/',(req,res)=>{
+	res.render('login');
+})``` 
+and then export the router as ```module.exports = router```
+
 
 
