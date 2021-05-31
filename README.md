@@ -194,4 +194,48 @@ module.exports =  mongoose.model('User',UserSchema)
     )
   )
 ...
+
+
 ```
+now in the auth.js u can define the logout which is simple like when ever you get login you have to logout the page and the logout page is in the req object only so you have to just simply call req.logout in the get req of logout in auth.js 
+like
+```
+// @desc    Logout user
+// @route   GET /auth/Logout
+ 
+router.get('/logout',(req,res)=>{
+	req.logout()
+	res.redirect('/')
+}) 
+
+
+```
+# EDIT THE DASHBOARD
+so now we have to edit the dashboard where we need a partials like the header the buttons and much more. So for making the partials we have to make a folder again in views and its name should be partials only and now in that we can make a file name _header.hbs 
+
+in header.hbs write
+
+```
+
+<nav class="grey darken-3">
+    <div class="nav-wrapper container">
+
+        <a href="#!" class="brand-logo center">StoryBooks</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="/stories">Public Stories</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+// this is styling its your oun wish to how you can do these things
+// here for the nav bar to work we have to add the matterialize script in the main layout ie main.hbs
+```
+ write this script in the main.hbs layout file in the boy tag
+ ```
+             <script>
+		 M.Sidenav.init(document.querySelector('.sidenav'))
+	    </script>
+ ```
+
