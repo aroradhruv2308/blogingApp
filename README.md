@@ -126,3 +126,42 @@ module.exports = router
 
 ```
 now at this time you can check your terminal there all the info related to the person is shown when he clicks the google account so now our wor is to store that in the data base and create a session for it
+
+## CREATING USER OBJECT AND STORING IT IN DATABASE AND CALLING THE CALLBACK AGAIN
+now as the callback function is fired we have to write the logic of storing the data into the database for the user or if user exist alredy then also we will just again call the callback done function this function will lode the call back url from the auth.js and perform the given logic so now inside passport.js you have to write the call back function but before that you have to create a model so for that make a models folder in the directory and there create User.js
+```
+const mongoose = require('mongoose')
+
+const UserSchema = new mongoose.Schema({
+	googleId: {
+		type: String,
+		required: true
+	},
+
+	displayName: {
+		type: String,
+		required: true
+	},
+
+	firstName: {
+		type: String,
+		required: true
+	},
+
+	lastName: {
+		type: String,
+		required: true
+	},
+
+	image: {
+		type: String
+	},
+	createdAt:{
+		type: Date,
+		dafault: Date.now
+	}
+})
+
+module.exports =  mongoose.model('User',UserSchema)
+
+```
