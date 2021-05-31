@@ -306,3 +306,75 @@ app.use(
 )
 
 ```
+
+# NOW SHOWING BLOGS TO THE DASHBOARD
+so to show any thing on the page we have to store that in our database so before storing it in the database we have to create model first which will have the scheema related to that
+so for that create a new file in model and name it as Story.js and there write
+```
+const mongoose = require('mongoose')
+
+const StorySchema = new mongoose.Schema({
+	title: {
+		type: String,
+		required: true,
+		trim: true
+	},
+
+	body: {
+		type: String,
+		required: true
+	},
+
+	status: {
+		type: String,
+		default: public,
+		enum: ['public','private']
+
+
+	},
+
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+	},
+
+	
+	createdAt:{
+		type: Date,
+		dafault: Date.now
+	}
+})
+
+module.exports =  mongoose.model('Story',StorySchema)
+```
+
+## now we will send the stories as a javascipt object to the template page
+#### for that you have to visit the  index.js file and before  the dashboard render
+you have to use try and catch method which will help to first create the javascript object through the story model by finding all the stories wth the find method of mongoose and converting it from the mongoose document to the javascript object by using the .lean() method 
+
+require the story model first
+```
+const Story = require('../models/Story')
+
+```
+
+```
+router.get('/dashboard',ensureAuth,async (req,res)=>{
+
+	try{
+           const stories = await Story.find({user: req.user.id}).lean()
+           res.render('dashboard',{
+		   name: req.user.firstName,
+		   stories
+     });
+	} catch (err) {
+                console.error(err)
+                res.render('error/505')
+	}
+	res.render('dashboard',{
+		name: req.user.firstName,
+     });
+})
+
+```
+
