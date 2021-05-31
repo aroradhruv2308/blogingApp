@@ -99,4 +99,30 @@ module.exports = function(passport) {
 }
 
 ```
+## again intitallise the route for the authentication
 
+first make the auth.js file in the router folder now you have to first mention in the app.js about the new route ie auth.js so for that
+
+in app.js write
+```
+const loginRouter = require("./routers/auth.js");
+app.use('/auth',loginRouter);
+
+```
+in auth.js you have to write the orignal redirectss
+```
+const express = require('express')
+const passport = require('passport')
+const router = new express.Router()
+
+router.get('/google',passport.authenticate('google', {scope: ['profile']}))
+
+router.get('/google/callback', passport.authenticate('google', {failureRedirect:'/'}),
+	(req,res)=>{
+		res.redirect('/dashboard')
+	})
+
+module.exports = router
+
+```
+now at this time you can check your terminal there all the info related to the person is shown when he clicks the google account so now our wor is to store that in the data base and create a session for it
