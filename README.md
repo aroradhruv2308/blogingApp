@@ -234,8 +234,6 @@ in header.hbs write
 ```
  write this script in the main.hbs layout file in the boy tag
  ```
-             <script>
-		 M.Sidenav.init(document.querySelector('.sidenav'))
-	    </script>
+             <script> M.Sidenav.init(document.querySelector('.sidenav') </script>
  ```
 
