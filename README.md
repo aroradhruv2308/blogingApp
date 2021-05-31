@@ -237,3 +237,52 @@ in header.hbs write
              <script> M.Sidenav.init(document.querySelector('.sidenav') </script>
  ```
 
+### NOW I HAVE TO MAKE MIDDLEWARES FOR
+#### HANDLING PROBLEMS LIKE WHEN YOU RE NOT LOGGED IN YOU CANT SEE THE DASHBOARD AND IF YOU R LOGIN THEN YOU DONT HAVE TO SEE THE LOGIN PAGE AGAIN
+now for handling this problem we will introduce middlewares basically the middleware are the middle functions which contains information of the req to the server
+so we will be creatng the new folder in the root directory ie the middleware in side it make a file name auth.js and inside that write these two functions while exporting the module 
+
+```
+// it is the middle ware 
+
+module.exports = {
+
+	// here the next is just a fuction which will just move it to next middleware
+	ensureAuth: function(req,res,next) {
+          if (req.isAuthenticated()){
+          	return next()
+          } else{
+          	res.redirect('/')
+          }
+	},
+
+	ensureGuest: function(req,res,next) {
+		if (req.isAuthenticated()){
+          	res.redirect('/dashboard')
+          } else{
+          	return next()
+          }
+	}
+
+}
+
+```
+
+and now i have to require this file in the route section that is the index.js file so for checking the middleware before calling the req yoou can send it as a second argument to the get function
+
+```
+const { ensureAuth, ensureGuest } = require('../middleware/auth')
+router.get('/', ensureGuest,(req,res)=>{
+	res.render('login',{
+		layout: 'login'
+	});
+})
+
+router.get('/dashboard',ensureAuth,(req,res)=>{
+	res.render('dashboard');
+})
+
+module.exports = router
+
+
+```
