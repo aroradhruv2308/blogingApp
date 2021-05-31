@@ -286,3 +286,23 @@ module.exports = router
 
 
 ```
+
+### SAVE THE SESSION IN THE DATABASE USING CONNECT-MONGO MODULE 
+first include the modules like require them in app.js
+```
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+```
+and then in the session code you have to store it using mongo uri
+```
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+  })
+)
+
+```
