@@ -473,3 +473,13 @@ so again you have to add the following things for this whole setup like setting 
 ```
 you can see in this form that the method is post and the action is in /stories section and now you can add script for that status button and the ather ckeditor thing for designing in the main layout
 
+at last render the page in the router stories.js
+
+```
+router.get('/add', ensureAuth,(req,res)=>{
+	res.render('stories/add')
+})
+
+```
+
+
