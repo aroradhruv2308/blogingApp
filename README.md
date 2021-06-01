@@ -482,4 +482,14 @@ router.get('/add', ensureAuth,(req,res)=>{
 
 ```
 
+### handling the post request 
+for the data which is saved through the form we have to use the body parser module so that we can get the data through req.body so for that include the following middle ware in the app.js
+```
+
+// body parser
+
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+```
+
 
