@@ -377,4 +377,47 @@ router.get('/dashboard',ensureAuth,async (req,res)=>{
 })
 
 ```
+## Now we will be adding the stories to the dash
+as i ve send the javascript object to the template engine now we have to loop arround all stories and display to our dashboard and this we can do in the template file .hbs only by using `{{each}}`  so in the dashboard we ll apply certain if and else and create the table and loop through all the elements in the table 
+```
+{{#if stories}}
+ 
+  <table class="striped">
+    <thead>
+      <tr>
+        
+        <th>Title</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th></th>
+
+      </tr>
+
+    </thead>
+    <tbody>
+      {{#each stories}}
+
+        <tr>
+          <td> <a href="/stories/">{{_id}}</a>{{title}}</td>
+
+          <td>{{createdAt}}</td>
+          <td><span class="dash-status">{{status}}</span></td>
+          <td></td>
+
+
+        </tr>
+
+      {{/each}}
+
+    </tbody>
+      
+  </table>
+
+{{else}}
+    <p>you dont have any story</p>
+
+{{/if}}
+
+```
+
 
