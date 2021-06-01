@@ -419,5 +419,57 @@ as i ve send the javascript object to the template engine now we have to loop ar
 {{/if}}
 
 ```
+## ADDING the add story button and the relative adding story pae form to the template and making use of CKEDITOR
 
+so again you have to add the following things for this whole setup like setting up the route and maiking the form adding the script related to ck editors and the materialze script to the main layout and then you r done 
+
+#### make the add button to your partials and then include it in main file
+```
+// this is for partial file _add_tn.js
+<div class="fixed-action-btn">
+    <a href="/stories/add" class="btn-floating btn-large waves-effect waves-light red"><i class="fas fa-plus"></i></a>
+</div>
+
+```
+
+#### make new folder called as stories in the viws section and paste the for m there ad relative scripts to
+
+```
+
+// this is the form for the story 
+<h3>Add Story</h3>
+<div class="row">
+    <form action="/stories" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="title" name="title">
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select id="status" name="status">
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell Us Your Story:</h5>
+                <textarea id="body" name="body"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Save" class="btn">
+            <a href="/dashboard" class="btn orange">Cancel</a>
+        </div>
+    </form>
+</div>
+```
+you can see in this form that the method is post and the action is in /stories section and now you can add script for that status button and the ather ckeditor thing for designing in the main layout
 
