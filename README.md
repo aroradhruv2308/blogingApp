@@ -341,7 +341,7 @@ const StorySchema = new mongoose.Schema({
 	
 	createdAt:{
 		type: Date,
-		dafault: Date.now
+		default: Date.now
 	}
 })
 
@@ -491,5 +491,32 @@ for the data which is saved through the form we have to use the body parser modu
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 ```
+
+now as we have created the story schema and we have form that saves it to the action the thing left is to create a object and sav it to the data base using create command of the mongoose finally adding it to the database
+
+```
+// in the stories.js file in the routes nake a post req
+
+// @desc process adding form
+//@route POST /stories
+router.post('/', ensureAuth,async (req,res)=>{
+	try{
+             
+           req.body.user =  req.user.id
+           await Story.create(req.body)
+           res.redirect('/dashboard')
+
+	} catch(err){
+
+		console.error(err)
+		res.render('error/500')
+
+	}
+})
+
+
+```
+
+
 
 
