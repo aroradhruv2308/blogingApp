@@ -1,0 +1,19 @@
+p {
+	margin: 50px 0 !important;
+}
+
+.login-container {
+	width: 400px;
+	margin-top: 50px;
+	text-align: center;
+
+}
+
+.temp {
+	width: 400px;
+	text-align: center;
+	align-content: center;
+	margin-right: 50px;
+	padding: 50px;
+
+}
